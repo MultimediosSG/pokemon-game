@@ -14,13 +14,27 @@ const message = ref("");
 
 
 async function mixPokemonArray() {
-  
+  pokemonArr.value = await getPokemonOptions()
+
+  const rndInt = Math.floor(Math.random() * 4)
+  pokemon.value = pokemonArr.value[rndInt]
 }
 function checkAnswer(selectedId) {
- 
+  showPokemon.value = true
+  showAnswer.value = true
+
+  if (selectedId === pokemon.value.id) {
+    message.value = `Correcto, ${pokemon.value.name}`
+  } else {
+    message.value = `Oops, era ${pokemon.value.name}`
+  }
 }
 function newGame() {
- 
+  showPokemon.value = false
+  showAnswer.value = false
+  pokemonArr.value = []
+  pokemon.value = null
+  mixPokemonArray()
 }
 
 onMounted(() => {

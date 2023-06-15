@@ -5,23 +5,17 @@ defineProps({
         required: true
     }
 });
+defineEmits(['selectionPokemon'])
 
 </script>
 <template>
     <div class="options-container">
         <ul>
-            <li>
-               opcion 1
-            </li>
-            <li>
-               opcion 2
-            </li>
-            <li>
-               opcion 3
-            </li>
-            <li>
-               opcion 4
-            </li>
+            <li v-for="pokemon in pokemons" 
+          :key="pokemon.id"
+          @click="$emit( 'selectionPokemon', pokemon.id )">
+          {{ pokemon.name }}
+      </li>
         </ul>
 
     </div>
